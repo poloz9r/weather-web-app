@@ -1,18 +1,37 @@
-const link = "http://api.weatherstack.com/current?access_key=8823bf16244795f65112add4ce002431";
+const api_key = "7cfbf1cffe3968929f8be283eb13bdf6";
+const api_url = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
-let store = {
-    city: "Moscow",
-    temperature: 0,
-    humidity: 0,
-    windSpeed: 0,
-};
+const search_box = document.querySelector(".search input");
+const search_btn = document.querySelector(".search button");
+const weatherIcon = document.querySelector(".weather-icon");
 
-const fetchData = async () => {
-    const result = await fetch('${link}&query=${store.city}');
-    const data = await result.json();
 
-    const {
-        current: { temperature, humidity, wind},
-    } = data
-    console.log("data",data);
-};
+async function checkWeather(city){
+    const response = await fetch(api_url + city + `&appid=${api_key}`);
+    var data = await response.json();
+
+    console.log(data);
+
+    document.querySelector(".city").innerHTML = data.name;
+    document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°";
+    document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+    document.querySelector(".wind").innerHTML = Math.round(data.wind.speed)+ "m/s";
+
+    if(data.weather[0].main == "Clouds"){
+        weatherIcon.src = "images/clouds.png";
+    }
+    else if(data.weather[0].main == "Rain"){
+        weatherIcon.src = "images/rain.png";
+    }
+    else if(data.weather[0].main == "Drizzle"){
+        weatherIcon.src = "images/drizzle.png";
+    }
+    else if(data.weather[0].main == "Mist"){
+        weatherIcon.src = "images/mist.png";
+    }
+}
+
+
+search_btn.addEventListener("click", ()=> {
+    checkWeather(search_box.value);
+})
