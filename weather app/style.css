@@ -34,6 +34,15 @@ body{
     flex: 1;
     margin-right: 16px;
     font-size: 18px;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-delay: 0s;
+    transition-timing-function: ease-in-out;
+}
+.search input:hover{
+    background-color: #4d4343;
+    color: #000000;
+
 }
 .search button{
     border: 0;
@@ -43,8 +52,18 @@ body{
     width: 60px;
     height: 60px;
     cursor: pointer;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-delay: 0s;
+    transition-timing-function: ease-in-out;
+
 
 }
+.search button:hover{
+
+
+    background-color: #4d4343;
+    }
 .search button img{
     width: 16px;
 }
