@@ -41,7 +41,7 @@ body{
 }
 .search input:hover{
     background-color: #4d4343;
-    color: #000000;
+    color: #fffdfd;
 
 }
 .search button{

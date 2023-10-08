@@ -29,8 +29,16 @@ async function checkWeather(city){
     else if(data.weather[0].main == "Mist"){
         weatherIcon.src = "images/mist.png";
     }
+    else if(data.weather[0].main == "Clear"){
+        weatherIcon.src = "images/clear1.png";
+    }
 }
 
+search_box.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+        checkWeather(search_box.value);
+    }
+});
 
 search_btn.addEventListener("click", ()=> {
     checkWeather(search_box.value);
